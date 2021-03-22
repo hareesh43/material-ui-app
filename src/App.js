@@ -1,23 +1,40 @@
-
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Create from "./pages/Create";
 import Notes from "./pages/Notes";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core";
+import { purple } from "@material-ui/core/colors";
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#fefefe",
+    },
+    secondary:purple,
+    
+  },
+  typography:{
+    fontFamily:'Quicksand',
+    fontWeightLight:400,
+    fontWeightRegular:500,
+    fontWeightMedium:600,
+    fontWeightBold:700
+  }
+});
 
 function App() {
   return (
-    <div className="App">
-    <Router>
-      <Switch>
-        <Route exact path="/">
-          <Notes/>
-        </Route>
-        <Route exact path="/create">
-          <Create/>
-        </Route>
-      </Switch>
-    </Router>
-      
-    </div>
+    <ThemeProvider theme = {theme}>
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Notes />
+          </Route>
+          <Route exact path="/create">
+            <Create />
+          </Route>
+        </Switch>
+      </Router>
+    </ThemeProvider>
   );
 }
 
