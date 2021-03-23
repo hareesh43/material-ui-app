@@ -78,7 +78,7 @@ export default function Create() {
         />
 
         <FormControl className={classes.field}>
-          <FormLabel>Note Category</FormLabel>
+          <FormLabel color = "secondary">Note Category</FormLabel>
           <RadioGroup
             value={category}
             onChange={(e) => {
