@@ -11,23 +11,29 @@ import { useHistory, useLocation } from "react-router";
 
 const drawerWidth = "240px";
 
-const useStyles = makeStyles({
-  page: {
-    backgroundColor: "#f9f9f9",
-    width: "100%",
-  },
-  drawer: {
-    width: drawerWidth,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  root: {
-    display: "flex",
-  },
-  active: {
-   backgroundColor:"#f4f4f4"
-  },
+const useStyles = makeStyles((theme) => {
+  return {
+    page: {
+      backgroundColor: "#f9f9f9",
+      width: "100%",
+      padding: theme.spacing(3),
+    },
+    drawer: {
+      width: drawerWidth,
+    },
+    drawerPaper: {
+      width: drawerWidth,
+    },
+    root: {
+      display: "flex",
+    },
+    active: {
+      backgroundColor: "#f4f4f4",
+    },
+    drawerTitle: {
+      padding: theme.spacing(2),
+    },
+  };
 });
 export default function Layout({ children }) {
   const classes = useStyles();
@@ -55,7 +61,9 @@ export default function Layout({ children }) {
         classes={{ paper: classes.drawerPaper }}
       >
         <div>
-          <Typography variant="h5">Ninja Notes</Typography>
+          <Typography variant="h5" className={classes.drawerTitle}>
+            Ninja Notes
+          </Typography>
         </div>
         {/* menu lists */}
         <List>
@@ -64,9 +72,10 @@ export default function Layout({ children }) {
               key={item.text}
               button
               onClick={() => history.push(item.path)}
-              className ={location.pathname === item.path?classes.active : null}
+              className={
+                location.pathname === item.path ? classes.active : null
+              }
             >
-            {console.log(location.pathname)}
               <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.text} />
             </ListItem>
