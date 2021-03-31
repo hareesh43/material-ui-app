@@ -17,12 +17,6 @@
       "details": "some work needed to be done",
       "category": "work",
       "id": 4
-    },
-    {
-      "title": "Pay",
-      "details": "slip",
-      "category": "money",
-      "id": 5
     }
   ]
 }

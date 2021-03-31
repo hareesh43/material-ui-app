@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import { Container } from "@material-ui/core";
 import NoteCard from "../components/NoteCard";
+import Masonry from "react-masonry-css";
 
 export default function Notes() {
   const [notes, setNotes] = useState([]);
@@ -11,23 +12,32 @@ export default function Notes() {
       .then((data) => setNotes(data));
   }, []);
 
-  const handleDelete = (id)=>{
-    fetch("http://localhost:8000/notes/"+id,{
-      method:'DELETE'
-    })
-    const newNotes = notes.filter(note=>note.id !== id)
-    setNotes(newNotes)
+  const handleDelete = (id) => {
+    fetch("http://localhost:8000/notes/" + id, {
+      method: "DELETE",
+    });
+    const newNotes = notes.filter((note) => note.id !== id);
+    setNotes(newNotes);
+  };
 
+  const breakPoints = {
+    default:3,
+    1100:2,
+    700:1,
   }
   return (
     <Container>
-      <Grid container spacing = {3}>
+      <Masonry
+        breakpointCols={breakPoints}
+        className="my-masonry-grid"
+        columnClassName="my-masonry-grid_column"
+      >
         {notes.map((note) => (
-          <Grid key={note.id} item xs={12} sm={6} lg={4}>
-            <NoteCard notes={note} handleDelete  = {handleDelete}/>
-          </Grid>
+          <div key={note.id}>
+            <NoteCard notes={note} handleDelete={handleDelete} />
+          </div>
         ))}
-      </Grid>
+      </Masonry>
     </Container>
   );
 }
