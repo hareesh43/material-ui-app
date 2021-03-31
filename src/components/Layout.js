@@ -8,6 +8,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
+import Avatar from '@material-ui/core/Avatar';
 import { AddCircleOutlineOutlined, SubjectOutlined } from "@material-ui/icons";
 import { useHistory, useLocation } from "react-router";
 import {format} from 'date-fns'
@@ -42,6 +43,9 @@ const useStyles = makeStyles((theme) => {
     toolbar: theme.mixins.toolbar,
     date:{
       flexGrow:1
+    },
+    avatar:{
+      marginLeft: theme.spacing(2)
     }
   };
 });
@@ -65,10 +69,11 @@ export default function Layout({ children }) {
   return (
     <div className={classes.root}>
       {/* appbar */}
-      <AppBar className={classes.appbar} elevation = {0}>
+      <AppBar className={classes.appbar} elevation = {1}>
         <Toolbar>
           <Typography className={classes.date}>Today is {format(new Date(),'do MMMM Y')}</Typography>
-          <Typography>NInja</Typography>
+          <Typography>Ninja</Typography>
+          <Avatar src = "/mario-av.png" className ={classes.avatar}/>
         </Toolbar>
       </AppBar>
       <Drawer
